@@ -1,10 +1,10 @@
 import csv
 from datetime import datetime
 
-DEGREE_SYBMOL = u"\N{DEGREE SIGN}C"
-
+DEGREE_SYMBOL = u"\N{DEGREE SIGN}C"
 
 def format_temperature(temp):
+
     """Takes a temperature and returns it in string format with the degrees
         and celcius symbols.
 
@@ -13,19 +13,20 @@ def format_temperature(temp):
     Returns:
         A string contain the temperature and "degrees celcius."
     """
-    return f"{temp}{DEGREE_SYBMOL}"
-
+    return f"{temp}{DEGREE_SYMBOL}"
 
 def convert_date(iso_string):
-    """Converts and ISO formatted date into a human readable format.
+    """Converts an ISO formatted date into a human readable format.
 
     Args:
         iso_string: An ISO date string..
     Returns:
         A date formatted like: Weekday Date Month Year e.g. Tuesday 06 July 2021
-    """
+    """    
     pass
 
+    date_obj = datetime.fromisoformat(iso_string)
+    return date_obj.strftime("%B %d %Y")
 
 def convert_f_to_c(temp_in_farenheit):
     """Converts an temperature from farenheit to celcius.
