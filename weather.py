@@ -73,7 +73,7 @@ def load_data_from_csv(csv_file):
 
     with open(file="dogs_are_awesome.csv", mode="r", encoding="utf-8") as my_file:
         csv_reader = csv.reader(my_file, delimiter = " ")
-
+        
 
 def find_min(weather_data):
     """Calculates the minimum value in a list of numbers.
