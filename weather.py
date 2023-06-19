@@ -28,19 +28,18 @@ def convert_date(iso_string):
     date_obj = datetime.fromisoformat(iso_string)
     return date_obj.strftime("%A %d %B %Y")
 
-def convert_f_to_c(temp_in_farenheit):
-    """Converts an temperature from farenheit to celcius.
+def convert_f_to_c(temp_in_fahrenheit):
+    """Converts a temperature from Fahrenheit to Celsius.
 
     Args:
-        temp_in_farenheit: float representing a temperature.
+        temp_in_fahrenheit: float representing a temperature.
     Returns:
-        A float representing a temperature in degrees celcius, rounded to 1dp.
+        A float representing the temperature in degrees Celsius, rounded to 1 decimal place.
     """
     pass
 
-    celsius_temp = (temp_in_farenheit - 32) * 5 / 9
-    rounded_celsius_temp = round(celsius_temp, 1)
-    return rounded_celsius_temp
+    celsius = float((temp_in_fahrenheit - 32) * 5 / 9)
+    return round(celsius, 1)
 
 def calculate_mean(weather_data):
     """Calculates the mean value from a list of numbers.
