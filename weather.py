@@ -26,7 +26,7 @@ def convert_date(iso_string):
     pass
 
     date_obj = datetime.fromisoformat(iso_string)
-    return date_obj.strftime("%B %d %Y")
+    return date_obj.strftime("%A %d %B %Y")
 
 def convert_f_to_c(temp_in_farenheit):
     """Converts an temperature from farenheit to celcius.
@@ -38,6 +38,9 @@ def convert_f_to_c(temp_in_farenheit):
     """
     pass
 
+    celsius_temp = (temp_in_farenheit - 32) * 5 / 9
+    rounded_celsius_temp = round(celsius_temp, 1)
+    return rounded_celsius_temp
 
 def calculate_mean(weather_data):
     """Calculates the mean value from a list of numbers.
@@ -49,7 +52,13 @@ def calculate_mean(weather_data):
     """
     pass
 
-
+    if not weather_data:
+        return 0                
+    else:
+        total = sum(weather_data)
+        mean = total / len(weather_data)
+        return float(mean)
+    
 def load_data_from_csv(csv_file):
     """Reads a csv file and stores the data in a list.
 
@@ -59,6 +68,11 @@ def load_data_from_csv(csv_file):
         A list of lists, where each sublist is a (non-empty) line in the csv file.
     """
     pass
+
+    import csv
+
+    with open(file="dogs_are_awesome.csv", mode="r", encoding="utf-8") as my_file:
+        csv_reader = csv.reader(my_file, delimiter = " ")
 
 
 def find_min(weather_data):
