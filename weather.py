@@ -68,11 +68,19 @@ def load_data_from_csv(csv_file):
     """
     pass
 
+<<<<<<< HEAD
     data = []
     for row in csv_file:
         if row:
             data.append(row)
     return data
+=======
+    import csv
+
+    with open(file="dogs_are_awesome.csv", mode="r", encoding="utf-8") as my_file:
+        csv_reader = csv.reader(my_file, delimiter = " ")
+        
+>>>>>>> 4306ab8c55bd8a0c90cd62b99a466d77b4c386a1
 
 def find_min(weather_data):
     """Calculates the minimum value in a list of numbers.
