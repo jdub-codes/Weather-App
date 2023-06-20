@@ -38,7 +38,7 @@ def convert_f_to_c(temp_in_fahrenheit):
     """
     pass
 
-    celsius = float((temp_in_fahrenheit - 32) * 5 / 9)
+    celsius = (float(temp_in_fahrenheit) - 32) * 5 / 9
     return round(celsius, 1)
 
 def calculate_mean(weather_data):
@@ -54,7 +54,7 @@ def calculate_mean(weather_data):
     if not weather_data:
         return 0                
     else:
-        total = sum(weather_data)
+        total = int(sum(weather_data))
         mean = total / len(weather_data)
         return float(mean)
     
@@ -68,11 +68,11 @@ def load_data_from_csv(csv_file):
     """
     pass
 
-    import csv
-
-    with open(file="dogs_are_awesome.csv", mode="r", encoding="utf-8") as my_file:
-        csv_reader = csv.reader(my_file, delimiter = " ")
-
+    data = []
+    for row in csv_file:
+        if row:
+            data.append(row)
+    return data
 
 def find_min(weather_data):
     """Calculates the minimum value in a list of numbers.
@@ -83,6 +83,10 @@ def find_min(weather_data):
         The minium value and it's position in the list.
     """
     pass
+
+    minimum = min(weather_data)
+    position = weather_data.index(minimum)
+    return minimum, position
 
 
 def find_max(weather_data):
@@ -95,6 +99,9 @@ def find_max(weather_data):
     """
     pass
 
+    maximum = max(weather_data)
+    position = weather_data.index(maximum)
+    return maximum, position
 
 def generate_summary(weather_data):
     """Outputs a summary for the given weather data.
@@ -106,6 +113,12 @@ def generate_summary(weather_data):
     """
     pass
 
+    num_days = len(weather_data)
+    average_temp = sum(day[1] for day in weather_data) / num_days
+    min_temp = min(day[1] for day in weather_data)
+    max_temp = max(day[1] for day in weather_data)
+    summary = f"Weather Summary:\nNumber of days: {num_days}\nAverage temperature: {average_temp:.2f}°C\nMinimum temperature: {min_temp}°C\nMaximum temperature: {max_temp}°C"
+    return summary
 
 def generate_daily_summary(weather_data):
     """Outputs a daily summary for the given weather data.
@@ -116,3 +129,11 @@ def generate_daily_summary(weather_data):
         A string containing the summary information.
     """
     pass
+
+    daily_summaries = []
+    for day in weather_data:
+        date = day[0]
+        temperature = day[1]
+        summary = f"Date: {date}\nTemperature: {temperature}°C"
+        daily_summaries.append(summary)
+    return "\n\n".join(daily_summaries)
