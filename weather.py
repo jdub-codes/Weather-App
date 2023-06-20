@@ -51,13 +51,9 @@ def calculate_mean(weather_data):
     """
     pass
 
-    if not weather_data:
-        return 0                
-    else:
-        total = int(sum(weather_data))
-        mean = total / len(weather_data)
-        return float(mean)
-    
+    mean = sum(weather_data) / len(weather_data)
+    return float(mean)
+
 def load_data_from_csv(csv_file):
     """Reads a csv file and stores the data in a list.
 
