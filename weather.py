@@ -52,7 +52,6 @@ def calculate_mean(weather_data):
     weather_data_sum = []
     for num in weather_data:
         weather_data_sum.append(float(num))
-    
     mean = sum(weather_data_sum) / len(weather_data_sum)
     return float(mean)
 
@@ -64,6 +63,7 @@ def load_data_from_csv(csv_file):
     Returns:
         A list of lists, where each sublist is a (non-empty) line in the csv file.
     """
+    list_1 = []
     with open(file=csv_file, mode="r", encoding="utf-8") as my_file:
         csv_reader = csv.reader(my_file, delimiter = ",")
         csv_reader.__next__()
@@ -82,22 +82,16 @@ def find_min(weather_data):
     Returns:
         The minium value and it's position in the list.
     """
-    # minimum = min(weather_data)
-    # position = weather_data.index(minimum)
-    # return minimum, position
+    min_value = float('inf')
+    max_index = -1
 
-    weather_data_min = []
-    if len(weather_data) > 0:   
-        for num in weather_data:
-            weather_data_min.append(float(num))
-        minimum = min(weather_data_min)
-        # for num in weather_data:
-        #     if num == minimum:
-        position = weather_data.index(minimum)
-        # print(position)
-        # print(weather_data_min)
-        # print(minimum)
-        return minimum, position
+    if len(weather_data) > 0:
+        for i in range(len(weather_data)):
+            num = float(weather_data[i])
+            if num <= min_value:
+                min_value = num
+                max_index = i
+        return min_value, max_index
     else:
         return ()
 
@@ -109,11 +103,18 @@ def find_max(weather_data):
     Returns:
         The maximum value and it's position in the list.
     """
-    pass
+    max_value = float('-inf')
+    max_index = -1
 
-    maximum = max(weather_data)
-    position = weather_data.index(maximum)
-    return maximum, position
+    if len(weather_data) > 0:
+        for i in range(len(weather_data)):
+            num = float(weather_data[i])
+            if num >= max_value:
+                max_value = num
+                max_index = i
+        return max_value, max_index
+    else:
+        return ()
 
 def generate_summary(weather_data):
     """Outputs a summary for the given weather data.
@@ -123,14 +124,13 @@ def generate_summary(weather_data):
     Returns:
         A string containing the summary information.
     """
-    pass
-
     num_days = len(weather_data)
-    average_temp = sum(day[1] for day in weather_data) / num_days
+    average_low = sum(day[1] for day in weather_data) / num_days
+    average_high = sum(day[2] for day in weather_data) / num_days
     min_temp = min(day[1] for day in weather_data)
     max_temp = max(day[1] for day in weather_data)
-    summary = f"Weather Summary:\nNumber of days: {num_days}\nAverage temperature: {average_temp:.2f}°C\nMinimum temperature: {min_temp}°C\nMaximum temperature: {max_temp}°C"
-    return summary
+    daily_summaries = daily_summaries + f"{num_days}{min_temp:.2f}{max_temp:.2f}{average_low:.2f}{average_high:.2f}"
+    return daily_summaries
 
 def generate_daily_summary(weather_data):
     """Outputs a daily summary for the given weather data.
@@ -140,12 +140,11 @@ def generate_daily_summary(weather_data):
     Returns:
         A string containing the summary information.
     """
-    pass
-
-    daily_summaries = []
+    daily_summaries = ""
     for day in weather_data:
-        date = day[0]
-        temperature = day[1]
-        summary = f"Date: {date}\nTemperature: {temperature}°C"
-        daily_summaries.append(summary)
-    return "\n\n".join(daily_summaries)
+        date = day.strftime[0]
+        temperature_min = day[1]
+        temperature_max = day[2]
+        daily_summaries = f"{date}{temperature_min}{DEGREE_SYMBOL}{temperature_max}{DEGREE_SYMBOL}"
+        daily_summaries.append(daily_summaries)
+    return daily_summaries
