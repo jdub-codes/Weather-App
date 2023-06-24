@@ -145,12 +145,11 @@ def generate_daily_summary(weather_data):
     Returns:
         A string containing the summary information.
     """
-    # daily_summaries = ""
-    # for day in weather_data:
-    #     date = day[0]
-    #     temperature_min = str(day[1]) + "°C"
-    #     temperature_max = str(day[2]) + "°C"
-    #     summary = f"{date}{temperature_min}{temperature_max}"
-    #     daily_summaries += summary
-    # return daily_summaries
-
+    daily_summaries = ""
+    for day in weather_data:
+        date = "---- " + convert_date(day[0]) + " ----"
+        min_temp = format_temperature(convert_f_to_c(day[1]))
+        max_temp = format_temperature(convert_f_to_c(day[2]))
+        summary = f"{date}\n  Minimum Temperature: {min_temp}\n  Maximum Temperature: {max_temp}\n\n"
+        daily_summaries += summary
+    return daily_summaries
