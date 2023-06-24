@@ -123,7 +123,7 @@ def generate_summary(weather_data):
     daily_summaries = ""
     if len(weather_data) > 0:
         overview = f"{len(weather_data)}"
-        num_days = len(weather_data)
+        # num_days = len(weather_data)
         min_temp, min_index = find_min([day[1] for day in weather_data])
         max_temp, max_index = find_max([day[2] for day in weather_data])
         average_low = calculate_mean(day[1] for day in weather_data)
